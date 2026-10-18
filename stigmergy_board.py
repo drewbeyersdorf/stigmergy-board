@@ -61,25 +61,26 @@ class Board:
 
 def demo():
     b = Board(dim_after=0.5)
-    b.pin("card-57", "round 57 entry", owner="dozer")
+    b.pin("card-57", "round 57 entry", owner="badger")
     b.pin("card-58", "round 58 entry")
-    b.mark("card-57", "dozer", "draft live, proofs attached")
-    b.claim("card-58", "skid")
+    b.mark("card-57", "badger", "draft live, proofs attached")
+    b.claim("card-58", "wren")
     try:
-        b.mark("card-58", "caliper", "sneak a note")   # not the owner
+        b.mark("card-58", "heron", "sneak a note")   # not the owner
     except PermissionError as e:
         print("BLOCKED:", e)
     try:
-        b.claim("card-58", "hark")                      # double claim
+        b.claim("card-58", "magpie")                      # double claim
     except PermissionError as e:
         print("BLOCKED:", e)
     print("t=0 board:", json.dumps(b.read()))
     time.sleep(0.6)                                     # let both go stale
-    b.mark("card-57", "dozer", "published")             # one stays lit
+    b.mark("card-57", "badger", "published")             # one stays lit
     print("t=0.6 board:", json.dumps(b.read()))
-    b.release("card-58", "skid")
-    b.claim("card-58", "caliper")
+    b.release("card-58", "wren")
+    b.claim("card-58", "heron")
     print("after release+reclaim:", json.dumps(b.read()))
 
 if __name__ == "__main__":
     demo()
+
